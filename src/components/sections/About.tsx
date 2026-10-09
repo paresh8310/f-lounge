@@ -1,103 +1,79 @@
-import { useState } from "react";
-import { BUSINESS, unsplash } from "../../data/business";
-import { CheckIcon } from "../icons";
-import { Reveal, SectionHeading } from "../ui";
+import { BUSINESS } from "../../data/business";
+import { Marquee, Reveal, SectionHeading } from "../ui";
+import { InstagramIcon, ArrowUpRightIcon } from "../icons";
 
-const PILLARS = [
-  "Functional, aesthetic & modern interiors",
-  "Customized furniture for every space",
-  "Residential, office & commercial projects",
-];
-
+/** Brand introduction — verified info only, Gen Z tone. */
 export default function About() {
-  const [imgFailed, setImgFailed] = useState(false);
-
   return (
-    <section id="about" className="scroll-mt-20 bg-ivory py-24 sm:py-32">
-      <div className="container-x grid grid-cols-1 items-center gap-14 lg:grid-cols-2 lg:gap-20">
-        {/* Text — left */}
-        <div>
+    <section id="about" aria-label="About F.LOUNGE" className="relative bg-obsidian">
+      <Marquee />
+      <div className="container-x grid gap-12 py-24 md:py-32 lg:grid-cols-12">
+        <div className="lg:col-span-7">
           <SectionHeading
-            align="left"
-            eyebrow="About Us"
+            eyebrow="The Brand"
             title={
               <>
-                Thoughtful Design.
+                NOT JUST A STORE.
                 <br />
-                <span className="font-light text-bronze-deep italic">Beautifully Executed.</span>
+                <span className="text-lime">A MOOD.</span>
               </>
             }
           />
-
           <Reveal delay={0.2}>
-            <p className="mt-6 max-w-lg text-[15px] leading-relaxed text-taupe sm:text-base">
-              {BUSINESS.name} is a Bangalore-based interior design company located in Lakshmipura,
-              specializing in functional, aesthetic and modern interiors for homes, offices and
-              commercial spaces — from customized furniture to complete design and project
-              management.
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.28}>
-            <ul className="mt-8 flex flex-col gap-3.5">
-              {PILLARS.map((pillar) => (
-                <li key={pillar} className="flex items-center gap-3 text-[15px] font-semibold text-charcoal">
-                  <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-bronze/15 text-bronze-deep">
-                    <CheckIcon className="h-3.5 w-3.5" />
-                  </span>
-                  {pillar}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-
-          <Reveal delay={0.36}>
-            <div className="mt-10 flex items-center gap-5 border-t border-charcoal/10 pt-8">
-              <span className="font-display text-5xl font-light text-charcoal">
-                {BUSINESS.ratingValue}
-                <span className="text-2xl text-taupe">/5</span>
-              </span>
-              <p className="text-xs leading-relaxed font-semibold tracking-wide text-taupe uppercase">
-                Rated {BUSINESS.ratingValue} out of 5
-                <br />
-                from {BUSINESS.ratingCount} Google reviews
+            <div className="mt-7 max-w-xl space-y-5 text-[15px] leading-relaxed text-bone/70 sm:text-base">
+              <p>
+                F.LOUNGE is a readymade garment store in {BUSINESS.locality}, {BUSINESS.city} — built for
+                everyone who treats getting dressed like the best part of the day.
               </p>
+              <p>
+                Fresh drops, everyday fits and pieces that hit different — walk in, try it on, take it home
+                the same day. No waiting, no fuss. Just your fit, your energy.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal delay={0.28}>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <span className="sticker-lime">Ready to wear</span>
+              <span className="sticker-acid">New drops weekly</span>
+              <span className="sticker">All ages, all vibes</span>
             </div>
           </Reveal>
         </div>
 
-        {/* Visual — right */}
-        <Reveal delay={0.15} className="relative">
-          <div
-            aria-hidden
-            className="absolute -top-6 -right-4 hidden h-full w-full rounded-t-[10rem] border border-bronze/30 lg:block"
-          />
-          {imgFailed ? (
-            <div className="flex aspect-[4/5] w-full items-center justify-center rounded-t-[10rem] bg-gradient-to-b from-linen to-parchment">
-              <span className="font-display text-6xl font-light text-sand">AF</span>
-            </div>
-          ) : (
-            <img
-              src={unsplash("photo-1600607687939-ce8a6c25118c", 1100)}
-              srcSet={`${unsplash("photo-1600607687939-ce8a6c25118c", 700)} 700w, ${unsplash("photo-1600607687939-ce8a6c25118c", 1100)} 1100w`}
-              sizes="(min-width: 1024px) 44vw, 92vw"
-              alt="Warm modern living space with natural light, layered textures and elegant furniture"
-              loading="lazy"
-              decoding="async"
-              onError={() => setImgFailed(true)}
-              className="aspect-[4/5] w-full rounded-t-[10rem] object-cover shadow-[0_40px_80px_-40px_rgba(38,34,29,0.4)]"
-            />
-          )}
-          <div
-            aria-hidden
-            className="absolute right-6 bottom-6 left-6 hidden items-center gap-3 rounded-2xl border border-white/40 bg-white/80 px-5 py-4 backdrop-blur-md sm:flex"
-          >
-            <span className="h-8 w-1 rounded-full bg-bronze" />
-            <p className="text-[13px] leading-snug font-semibold text-charcoal">
-              {BUSINESS.type} — {BUSINESS.locality}
-            </p>
-          </div>
-        </Reveal>
+        <div className="lg:col-span-5">
+          <Reveal delay={0.15} className="card-dark relative h-full min-h-[280px] overflow-hidden p-8">
+            <div className="absolute -right-10 -top-10 h-44 w-44 rounded-full bg-lime/10 blur-3xl" aria-hidden />
+            <p className="eyebrow">Quick facts</p>
+            <dl className="mt-6 space-y-5">
+              <div>
+                <dt className="text-[11px] font-bold tracking-[0.25em] text-bone/40 uppercase">Type</dt>
+                <dd className="mt-1 text-lg font-semibold text-bone">{BUSINESS.type}</dd>
+              </div>
+              <div>
+                <dt className="text-[11px] font-bold tracking-[0.25em] text-bone/40 uppercase">Area</dt>
+                <dd className="mt-1 text-lg font-semibold text-bone">
+                  {BUSINESS.locality}, {BUSINESS.city}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-[11px] font-bold tracking-[0.25em] text-bone/40 uppercase">Hours</dt>
+                <dd className="mt-1 text-lg font-semibold text-bone">
+                  {BUSINESS.hoursLines[0]} · {BUSINESS.hoursLines[1]}
+                </dd>
+              </div>
+            </dl>
+            <a
+              href={BUSINESS.instagram.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group mt-8 inline-flex items-center gap-2 text-sm font-bold tracking-wide text-lime"
+            >
+              <InstagramIcon className="h-4 w-4" />
+              @{BUSINESS.instagram.handle}
+              <ArrowUpRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
+          </Reveal>
+        </div>
       </div>
     </section>
   );

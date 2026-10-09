@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
 
-const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 interface RevealProps {
   children: ReactNode;
@@ -31,32 +31,47 @@ interface SectionHeadingProps {
   title: ReactNode;
   description?: string;
   align?: "left" | "center";
-  dark?: boolean;
 }
 
-export function SectionHeading({ eyebrow, title, description, align = "center", dark = false }: SectionHeadingProps) {
+export function SectionHeading({ eyebrow, title, description, align = "left" }: SectionHeadingProps) {
   const centered = align === "center";
   return (
-    <div className={centered ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}>
+    <div className={centered ? "mx-auto max-w-2xl text-center" : "max-w-3xl"}>
       <Reveal>
         <p className="eyebrow">{eyebrow}</p>
       </Reveal>
       <Reveal delay={0.08}>
-        <h2
-          className={`mt-4 font-display text-3xl leading-[1.12] font-medium tracking-[-0.01em] text-balance sm:text-4xl lg:text-[2.75rem] ${
-            dark ? "text-ivory" : "text-charcoal"
-          }`}
-        >
-          {title}
-        </h2>
+        <h2 className="headline mt-4 text-4xl text-bone sm:text-5xl lg:text-6xl">{title}</h2>
       </Reveal>
       {description ? (
         <Reveal delay={0.16}>
-          <p className={`mt-5 text-[15px] leading-relaxed sm:text-base ${dark ? "text-ivory/65" : "text-taupe"}`}>
-            {description}
-          </p>
+          <p className="mt-5 text-[15px] leading-relaxed text-bone/60 sm:text-base">{description}</p>
         </Reveal>
       ) : null}
+    </div>
+  );
+}
+
+const MARQUEE_WORDS = ["NEW DROPS", "EVERY WEEK", "F.LOUNGE", "ABBIGERE", "READYMADE", "YOUR FIT", "YOUR ENERGY"];
+
+/** Infinite scrolling sticker strip — pure decoration, aria-hidden. */
+export function Marquee({ reverse = false }: { reverse?: boolean }) {
+  const row = (
+    <div className="marquee-track shrink-0" style={reverse ? { animationDirection: "reverse" } : undefined}>
+      {MARQUEE_WORDS.map((w, i) => (
+        <span key={i} className="flex items-center gap-8">
+          <span className="headline text-3xl text-bone/90 sm:text-4xl">{w}</span>
+          <span className={`h-2.5 w-2.5 rounded-full ${i % 3 === 0 ? "bg-lime" : i % 3 === 1 ? "bg-acid" : "bg-lavender"}`} />
+        </span>
+      ))}
+    </div>
+  );
+  return (
+    <div className="relative overflow-hidden border-y border-bone/10 py-5" aria-hidden>
+      <div className="flex w-max">
+        {row}
+        {row}
+      </div>
     </div>
   );
 }

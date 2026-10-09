@@ -1,52 +1,54 @@
-import { BUSINESS, whatsappLink } from "../../data/business";
-import { ArrowRightIcon, PhoneIcon, WhatsAppIcon } from "../icons";
+import { BUSINESS, HAS_WHATSAPP, whatsappLink } from "../../data/business";
 import { Reveal } from "../ui";
+import { ArrowRightIcon, InstagramIcon, WhatsAppIcon } from "../icons";
 
+/** Bold closing CTA — explore, follow, or message. */
 export default function FinalCta() {
+  const wa = whatsappLink();
   return (
-    <section className="relative overflow-hidden bg-charcoal py-24 text-ivory sm:py-28">
+    <section aria-label="Final call to action" className="relative overflow-hidden bg-lime py-24 text-obsidian md:py-36">
       <div
+        className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full border-[28px] border-obsidian/10"
         aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(46% 60% at 50% 110%, rgba(169,138,95,0.22) 0%, rgba(38,34,29,0) 70%)",
-        }}
       />
+      <div className="pointer-events-none absolute -bottom-32 -left-20 h-80 w-80 rounded-full bg-acid/30 blur-3xl" aria-hidden />
       <div className="container-x relative text-center">
         <Reveal>
-          <p className="eyebrow">Start Your Project</p>
+          <p className="text-[11px] font-bold tracking-[0.35em] uppercase">One last thing</p>
         </Reveal>
         <Reveal delay={0.08}>
-          <h2 className="mx-auto mt-4 max-w-2xl font-display text-3xl leading-[1.12] font-medium text-balance text-ivory sm:text-4xl lg:text-[2.9rem]">
-            Let&rsquo;s Create a Space <span className="font-light text-bronze italic">You&rsquo;ll Love.</span>
+          <h2 className="headline mx-auto mt-5 max-w-4xl text-[13vw] leading-[0.95] sm:text-7xl lg:text-8xl">
+            READY TO OWN
+            <br />
+            YOUR LOOK?
           </h2>
         </Reveal>
         <Reveal delay={0.16}>
-          <p className="mx-auto mt-5 max-w-xl text-[15px] leading-relaxed text-ivory/60 sm:text-base">
-            Have a home, office or commercial space in mind? Talk to Al Falah Interiors about your
-            interior requirements.
-          </p>
-        </Reveal>
-        <Reveal delay={0.24}>
-          <div className="mt-9 flex flex-wrap items-center justify-center gap-3.5">
-            <a href="#contact" className="btn-gold group">
-              Book a Consultation
-              <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </a>
-            <a href={BUSINESS.phoneHref} className="btn-outline-light">
-              <PhoneIcon className="h-4 w-4" />
-              Call Now
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <a href="#collections" className="btn bg-obsidian text-lime hover:bg-onyx">
+              Explore the Collection
+              <ArrowRightIcon className="h-4 w-4" />
             </a>
             <a
-              href={whatsappLink()}
+              href={BUSINESS.instagram.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-outline-light"
+              className="btn border-2 border-obsidian/70 text-obsidian hover:border-obsidian hover:bg-obsidian/5"
             >
-              <WhatsAppIcon className="h-4 w-4" />
-              WhatsApp Us
+              <InstagramIcon className="h-4 w-4" />
+              Follow Us
             </a>
+            {HAS_WHATSAPP && wa && (
+              <a
+                href={wa}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn bg-[#25d366] text-white hover:bg-[#1fb955]"
+              >
+                <WhatsAppIcon className="h-4 w-4" />
+                WhatsApp Us
+              </a>
+            )}
           </div>
         </Reveal>
       </div>

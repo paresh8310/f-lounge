@@ -1,44 +1,46 @@
 import Navbar from "./components/Navbar";
 import MobileBar from "./components/MobileBar";
+import WhatsAppFloat from "./components/WhatsAppFloat";
+import CustomCursor from "./components/CustomCursor";
 import Hero from "./components/Hero";
+import HeroScene from "./components/HeroScene";
 import About from "./components/sections/About";
-import Services from "./components/sections/Services";
+import Showcase from "./components/sections/Showcase";
 import WhyUs from "./components/sections/WhyUs";
-import Portfolio from "./components/sections/Portfolio";
-import Process from "./components/sections/Process";
 import Reviews from "./components/sections/Reviews";
+import Process from "./components/sections/Process";
 import FinalCta from "./components/sections/FinalCta";
-import Contact from "./components/sections/Contact";
-import Faq from "./components/sections/Faq";
 import Footer from "./components/Footer";
 
 export default function App() {
   return (
-    <div className="relative min-h-screen overflow-x-clip bg-ivory text-charcoal">
+    <div className="grain relative min-h-screen overflow-x-clip bg-obsidian text-bone">
       <a
-        href="#about"
-        className="sr-only z-[80] rounded-full bg-charcoal px-5 py-3 text-sm font-semibold text-ivory focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+        href="#collections"
+        className="sr-only z-[80] rounded-full bg-lime px-5 py-3 text-sm font-bold text-obsidian focus:not-sr-only focus:fixed focus:left-3 focus:top-3"
       >
         Skip to content
       </a>
 
+      <CustomCursor />
       <Navbar />
 
-      <main className="pb-[68px] md:pb-0">
-        <Hero />
+      <main className="relative pb-[64px] md:pb-0">
+        <div className="relative">
+          <Hero />
+          <HeroScene />
+        </div>
         <About />
-        <Services />
+        <Showcase />
         <WhyUs />
-        <Portfolio />
-        <Process />
         <Reviews />
+        <Process />
         <FinalCta />
-        <Contact />
-        <Faq />
       </main>
 
       <Footer />
       <MobileBar />
+      <WhatsAppFloat />
     </div>
   );
 }
